@@ -1,0 +1,10 @@
+body{
+	margin: 0px;
+}
+a{
+	color: rgba(0, 0, 0, 1.0);
+	text-decoration: none;
+}
+#inCanvas{
+	display: none;
+}
