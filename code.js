@@ -1,3 +1,5 @@
+//Created by Auragar
+
 document.getElementById("in").onchange = function(){
 	if((this.files[0].size/1024)/1024 < 1){
 		var fR = new FileReader;
