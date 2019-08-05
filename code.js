@@ -1,68 +1,51 @@
 //Created by Auragar
 
+var iC = document.getElementById("inCanvas");
+var iCtx = iC.getContext("2d");
+var oC = document.getElementById("outCanvas");
+var oCtx = oC.getContext("2d");
+
 document.getElementById("in").onchange = function(){
-	if((this.files[0].size/1024)/1024 < 1){
-		var fR = new FileReader;
+	var fR = new FileReader;
+	fR.onload = function(){
+		var input = new Image;
+		input.onload = function(){
+			iC.width = input.width;
+			iC.height = input.height;
 
-		fR.onload = function(){
-			var input = new Image;
+			iCtx.drawImage(input, 0, 0);
 
-			input.onload = function(){
-				var iC = document.getElementById("inCanvas");
-				iC.width = input.width;
-				iC.height = input.height;
-				var iCtx = iC.getContext("2d");
-				iCtx.drawImage(input, 0, 0);
-				var iID = iCtx.getImageData(0, 0, iC.width, iC.height);
-				var len = iID.data.length;
-				var iPRGBAA = [];
+			var iID = iCtx.getImageData(0, 0, iC.width, iC.height).data;
+			var len = iID.length;
+			var iPRGBAA = [];
 
-				for(var i = 0; i < len; i += 4){
-					if(iID.data[i + 3] > 0) iPRGBAA.push(iID.data[i] + "," + iID.data[i + 1] + "," + iID.data[i + 2] + "," + iID.data[i + 3]);
-				}
-
-				iPRGBAA = Array.from(new Set(iPRGBAA));
-
-				var iPRGBAAL = iPRGBAA.length;
-
-				if(iPRGBAAL < 100000){
-					oC = document.getElementById("outCanvas");
-					oCU = Math.ceil(Math.sqrt(iPRGBAAL));
-					oCS = oCU * 5;
-					oC.width = oCS;
-					oC.height = oCS;
-					oCtx = oC.getContext("2d");
-
-					var cur;
-
-					for(var i = 0; i < oCU; i++){
-						for(var j = 0; j < oCU; j++){
-							cur = (i * oCU) + j;
-
-							if(cur < iPRGBAAL){
-								oCtx.fillStyle = "rgba(" + iPRGBAA[cur] + ")";
-								oCtx.fillRect(j * 5, i * 5, 5, 5);
-							}
-							else{
-								oCtx.fillStyle = "rgba(0, 0, 0, 0.0)";
-							}
-						}
-					}
-				}
-				else{
-					alert("Image palette is too large.");
-				}
+			for(var i = 0; i < len; i += 4){
+				iPRGBAA.push(iID[i] + "," + iID[i + 1] + "," + iID[i + 2] + "," + iID[i + 3]);
 			}
 
-			input.src = fR.result;
+			iPRGBAA = Array.from(new Set(iPRGBAA));
+			var iPRGBAAL = iPRGBAA.length;
+			oCU = Math.ceil(Math.sqrt(iPRGBAAL));
+			oC.width = oCU;
+			oC.height = oCU;
+			var cur;
+
+			for(var i = 0; i < oCU; i++){
+				for(var j = 0; j < oCU; j++){
+					cur = (i * oCU) + j;
+
+					if(cur < iPRGBAAL){
+						oCtx.fillStyle = "rgba(" + iPRGBAA[cur] + ")";
+						oCtx.fillRect(j, i, 1, 1);
+					}
+				}
+			}
 		}
 
-		fR.readAsDataURL(this.files[0]);
+		input.src = fR.result;
+	}
 
-		this.value = null;
-		this.blur();
-	}
-	else{
-		alert("Image size is too large.");
-	}
+	fR.readAsDataURL(this.files[0]);
+	this.value = null;
+	this.blur();
 };
