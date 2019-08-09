@@ -7,7 +7,7 @@ a{
 	color: rgba(0, 0, 0, 1.0);
 	text-decoration: none;
 }
-#in{
+input[type="file"]{
 	outline: none;
 }
 #inCanvas{
