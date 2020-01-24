@@ -10,6 +10,9 @@ a{
 input[type="file"]{
 	outline: none;
 }
-#inCanvas{
+#canvas{
+	display: none;
+}
+#message{
 	display: none;
 }
