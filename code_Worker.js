@@ -1,4 +1,4 @@
-//Created by Auragar
+//Created by Aurange
 
 self.onmessage = function(e){
 	var uniqueColors = [];
