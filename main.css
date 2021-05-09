@@ -3,9 +3,12 @@
 body{
 	margin: 0px;
 }
-a{
-	color: rgba(0, 0, 0, 1);
-	text-decoration: none;
+button{
+  background-color: rgba(190, 218, 247, 1);
+  border-color: rgba(22, 102, 186, 1);
+  border-width: 2px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 input[type="file"]{
 	outline: none;
