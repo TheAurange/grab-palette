@@ -2,13 +2,13 @@
 
 "use strict";
 
-document.getElementById("in").onchange = function() {
+document.getElementById("in").onchange = function(){
   let can = document.getElementById("canvas");
   let ctx = can.getContext("2d");
   let file = new FileReader();
-  file.onload = function() {
+  file.onload = function(){
     let input = new Image();
-    input.onload = function() {
+    input.onload = function(){
       can.width = input.width;
       can.height = input.height;
 
@@ -21,7 +21,7 @@ document.getElementById("in").onchange = function() {
 
       let worker = new Worker("code_Worker.js");
       worker.postMessage(colors);
-      worker.onmessage = function(e) {
+      worker.onmessage = function(e){
         document.getElementById("in").style.display = "block";
         document.getElementById("canvas").style.display = "block";
         document.getElementById("message").style.display = "none";
@@ -32,11 +32,11 @@ document.getElementById("in").onchange = function() {
         can.height = unit;
         let cur;
 
-        for (let i = 0; i < unit; i++) {
-          for (let j = 0; j < unit; j++) {
+        for(let i = 0; i < unit; i++){
+          for(let j = 0; j < unit; j++){
             cur = (i * unit) + j;
 
-            if (cur < len) {
+            if(cur < len){
               ctx.fillStyle = "rgba(" + e.data[cur] + ")";
               ctx.fillRect(j, i, 1, 1);
             }
