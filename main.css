@@ -4,11 +4,11 @@ body{
 	margin: 0px;
 }
 button{
-  background-color: rgba(190, 218, 247, 1);
-  border-color: rgba(22, 102, 186, 1);
-  border-width: 2px;
-  border-radius: 10px;
-  cursor: pointer;
+	background-color: rgba(190, 218, 247, 1);
+	border-color: rgba(22, 102, 186, 1);
+	border-width: 2px;
+	border-radius: 10px;
+	cursor: pointer;
 }
 input[type="file"]{
 	outline: none;
