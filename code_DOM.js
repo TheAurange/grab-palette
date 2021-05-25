@@ -22,7 +22,6 @@ document.getElementById("in").onchange = function(){
       let worker = new Worker("code_Worker.js");
       worker.postMessage(colors);
       worker.onmessage = function(e){
-        alert("Meow");
         document.getElementById("in").style.display = "block";
         document.getElementById("canvas").style.display = "block";
         document.getElementById("message").style.display = "none";
@@ -45,7 +44,7 @@ document.getElementById("in").onchange = function(){
           }
         }
 
-        let file = new Blob([e.data], {type: "plain/text"});
+        let file = new Blob([e.data.join("\n")], {type: "plain/text"});
         document.getElementById("download").href = URL.createObjectURL(file);
 
         worker.terminate();
