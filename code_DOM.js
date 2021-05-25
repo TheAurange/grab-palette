@@ -47,6 +47,8 @@ document.getElementById("in").onchange = function(){
         let file = new Blob([e.data.join("\n")], {type: "plain/text"});
         document.getElementById("download").href = URL.createObjectURL(file);
 
+        document.getElementById("count").innerText = "Total Colors: " + len;
+
         worker.terminate();
       };
     }
@@ -55,8 +57,10 @@ document.getElementById("in").onchange = function(){
   }
 
   file.readAsDataURL(this.files[0]);
+  
   this.value = null;
   this.blur();
   document.getElementById("canvas").style.display = "none";
   document.getElementById("download").style.display = "none";
+  document.getElementById("count").innerText = "";
 };
