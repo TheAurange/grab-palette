@@ -20,3 +20,6 @@ input[type="file"]{
 #message{
 	display: none;
 }
+#download{
+	display: none;
+}
