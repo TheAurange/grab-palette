@@ -47,7 +47,7 @@ document.getElementById("in").onchange = function(){
         let file = new Blob([e.data.join("\n")], {type: "plain/text"});
         document.getElementById("download").href = URL.createObjectURL(file);
 
-        document.getElementById("count").innerText = "Total Colors: " + len;
+        document.getElementById("count").innerText = "Total Colors: " + Number(len).toLocaleString();
 
         worker.terminate();
       };
