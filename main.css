@@ -21,5 +21,7 @@ input[type="file"]{
 	display: none;
 }
 #download{
+	color: rgba(0, 0, 0, 1);
+	text-decoration: none;
 	display: none;
 }
