@@ -9,12 +9,14 @@ document.getElementById("in").onchange = function(){
     let input = new Image();
 
     input.onload = function(){
+      let colors, worker = new Worker("code_Worker.js");
+
       can.width = input.width;
       can.height = input.height;
 
       ctx.drawImage(input, 0, 0);
 
-      let colors = ctx.getImageData(0, 0, can.width, can.height).data, worker = new Worker("code_Worker.js");
+      colors = ctx.getImageData(0, 0, can.width, can.height).data;
 
       document.getElementById("in").style.display = "none";
       document.getElementById("message").style.display = "block";
