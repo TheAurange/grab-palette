@@ -32,7 +32,7 @@ document.getElementById("in").onchange = function(){
         document.getElementById("download").style.display = "block";
 
         can.width = unit;
-        can.height = Math.pow(unit, 2) - len >= unit ? unit - 1 : unit;
+        can.height = Math.ceil(len / unit);
 
         for(let i = 0; i < unit; i++){
           for(let j = 0; j < unit; j++){
