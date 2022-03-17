@@ -32,7 +32,7 @@ document.getElementById("in").onchange = function(){
         document.getElementById("download").style.display = "block";
 
         can.width = unit;
-        can.height = unit; //Brainstorming way to remove excess transparency at end of palette image.
+        can.height = Math.pow(unit, 2) - len >= unit ? unit - 1 : unit;
 
         for(let i = 0; i < unit; i++){
           for(let j = 0; j < unit; j++){
