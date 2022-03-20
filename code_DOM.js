@@ -19,6 +19,7 @@ document.getElementById("in").onchange = function(){
       colors = ctx.getImageData(0, 0, can.width, can.height).data;
 
       document.getElementById("in").style.display = "none";
+      document.getElementsByTagName("br")[0].style.display = "none";
       document.getElementById("message").style.display = "block";
 
       worker.postMessage(colors);
@@ -26,9 +27,10 @@ document.getElementById("in").onchange = function(){
       worker.onmessage = function(e){
         let len = e.data.length, unit = Math.ceil(Math.sqrt(len)), cur, file = new Blob([e.data.join("\n")], {type: "plain/text"});
 
+        document.getElementById("message").style.display = "none";
+        document.getElementsByTagName("br")[0].style.display = "inline";
         document.getElementById("in").style.display = "block";
         document.getElementById("canvas").style.display = "block";
-        document.getElementById("message").style.display = "none";
         document.getElementById("download").style.display = "block";
 
         can.width = unit;
