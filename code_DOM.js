@@ -30,7 +30,7 @@ document.getElementById("in").onchange = function(){
         document.getElementById("message").style.display = "none";
         document.getElementsByTagName("br")[0].style.display = "inline";
         document.getElementById("in").style.display = "block";
-        document.getElementById("canvas").style.display = "block";
+        can.style.display = "block";
         document.getElementById("download").style.display = "block";
 
         can.width = unit;
@@ -63,7 +63,7 @@ document.getElementById("in").onchange = function(){
   this.value = null;
   this.blur();
 
-  document.getElementById("canvas").style.display = "none";
+  can.style.display = "none";
   document.getElementById("download").style.display = "none";
   document.getElementById("count").innerText = "";
 };
