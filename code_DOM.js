@@ -43,9 +43,9 @@ document.querySelector("#in").onchange = function(){
             });
 
         fileInput.style.display = "block";
+        can.style.display = "block";
         br.style.display = "inline";
         message.style.display = "none";
-        can.style.display = "block";
         download.style.display = "block";
 
         can.width = unit;
