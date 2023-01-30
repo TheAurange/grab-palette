@@ -14,7 +14,7 @@ document.querySelector("#in").onchange = function(){
 
     input.onload = function(){
       let fileInput = document.querySelector("#in"),
-          br = document.querySelector("br"),
+          br = document.querySelectorAll("br")[1],
           message = document.querySelector("#message"),
           colors,
           worker = new Worker("code_Worker.js");
