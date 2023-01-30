@@ -13,7 +13,7 @@ document.querySelector("#in").onchange = function(){
     let input = new Image();
 
     input.onload = function(){
-      let input = document.querySelector("#in"),
+      let fileInput = document.querySelector("#in"),
           br = document.querySelector("br"),
           message = document.querySelector("#message"),
           colors,
@@ -26,7 +26,7 @@ document.querySelector("#in").onchange = function(){
 
       colors = ctx.getImageData(0, 0, can.width, can.height).data;
 
-      input.style.display = "none";
+      fileInput.style.display = "none";
       br.style.display = "none";
       message.style.display = "block";
 
@@ -42,7 +42,7 @@ document.querySelector("#in").onchange = function(){
               type: "plain/text"
             });
 
-        input.style.display = "block";
+        fileInput.style.display = "block";
         br.style.display = "inline";
         message.style.display = "none";
         can.style.display = "block";
