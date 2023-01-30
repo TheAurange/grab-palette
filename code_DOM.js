@@ -2,14 +2,22 @@
 
 "use strict";
 
-document.getElementById("in").onchange = function(){
-  let can = document.getElementById("canvas"), ctx = can.getContext("2d"), file = new FileReader();
+document.querySelector("#in").onchange = function(){
+  let can = document.querySelector("#canvas"),
+      download = document.querySelector("#download"),
+      count = document.querySelector("#count"),
+      ctx = can.getContext("2d"),
+      file = new FileReader();
 
   file.onload = function(){
     let input = new Image();
 
     input.onload = function(){
-      let colors, worker = new Worker("code_Worker.js");
+      let input = document.querySelector("#in"),
+          br = document.querySelector("br"),
+          message = document.querySelector("#message"),
+          colors,
+          worker = new Worker("code_Worker.js");
 
       can.width = input.width;
       can.height = input.height;
@@ -18,20 +26,27 @@ document.getElementById("in").onchange = function(){
 
       colors = ctx.getImageData(0, 0, can.width, can.height).data;
 
-      document.getElementById("in").style.display = "none";
-      document.getElementsByTagName("br")[0].style.display = "none";
-      document.getElementById("message").style.display = "block";
+      input.style.display = "none";
+      br.style.display = "none";
+      message.style.display = "block";
 
       worker.postMessage(colors);
 
       worker.onmessage = function(e){
-        let len = e.data.length, unit = Math.ceil(Math.sqrt(len)), cur, file = new Blob([e.data.join("\n")], {type: "plain/text"});
+        let len = e.data.length,
+            unit = Math.ceil(Math.sqrt(len)),
+            cur,
+            file = new Blob([
+              e.data.join("\n")
+            ], {
+              type: "plain/text"
+            });
 
-        document.getElementById("message").style.display = "none";
-        document.getElementsByTagName("br")[0].style.display = "inline";
-        document.getElementById("in").style.display = "block";
+        input.style.display = "block";
+        br.style.display = "inline";
+        message.style.display = "none";
         can.style.display = "block";
-        document.getElementById("download").style.display = "block";
+        download.style.display = "block";
 
         can.width = unit;
         can.height = Math.ceil(len / unit);
@@ -47,9 +62,9 @@ document.getElementById("in").onchange = function(){
           }
         }
 
-        document.getElementById("download").href = URL.createObjectURL(file);
+        download.href = URL.createObjectURL(file);
 
-        document.getElementById("count").innerText = "Total Colors: " + Number(len).toLocaleString();
+        count.innerText = "Total Colors: " + Number(len).toLocaleString();
 
         worker.terminate();
       };
@@ -64,6 +79,7 @@ document.getElementById("in").onchange = function(){
   this.blur();
 
   can.style.display = "none";
-  document.getElementById("download").style.display = "none";
-  document.getElementById("count").innerText = "";
+  download.style.display = "none";
+
+  count.innerText = "";
 };
