@@ -66,7 +66,7 @@ document.querySelector("#in").onchange = function(){
 
         count.innerText = "Total Colors: " + Number(len).toLocaleString();
 
-        //worker.terminate();
+        worker.terminate();
       };
     }
 
